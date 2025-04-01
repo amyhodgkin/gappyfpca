@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.linalg import eigh
 
-
+@profile
 def find_and_sort_eig(A: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
     Perform eigenvalue decomposition and sort the results in descending order of eigenvalue size.
@@ -34,7 +34,7 @@ def find_and_sort_eig(A: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
 
     return evalue, evector
 
-
+@profile
 def fpca_exp_var(eigenvalues: np.ndarray) -> np.ndarray:
     """
     Returns cumulative explained variance of principal components in descending order.
@@ -56,7 +56,7 @@ def fpca_exp_var(eigenvalues: np.ndarray) -> np.ndarray:
     """
     return np.cumsum(eigenvalues) / np.sum(eigenvalues)
 
-
+@profile
 def fpca_num_coefs(evalue: np.ndarray, var_rat: float, data: np.ndarray = None) -> int:
     """
     Calculate the number of coefficients to retain for an explained variance of var_rat.

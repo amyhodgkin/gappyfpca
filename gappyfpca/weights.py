@@ -3,7 +3,7 @@ from multiprocessing import Pool
 import numpy as np
 from scipy.optimize import minimize
 
-
+@profile
 def sum_sq_error(weight: float, data_func: np.ndarray, fpca_comp: np.ndarray) -> float:
     """
     Calculate the sum of squared error for optimizing the weight.
@@ -29,7 +29,7 @@ def sum_sq_error(weight: float, data_func: np.ndarray, fpca_comp: np.ndarray) ->
     fitted_component = weight * fpca_comp
     return np.sum((data_func - fitted_component) ** 2)
 
-
+@profile
 def process_weights(args: tuple[int, np.ndarray, np.ndarray, int]) -> np.ndarray:
     """
     Function to process weight optimization for gappy functions.
@@ -66,7 +66,7 @@ def process_weights(args: tuple[int, np.ndarray, np.ndarray, int]) -> np.ndarray
         data_func = data_func - fpca_weights[i] * fpca_comp
     return fpca_weights
 
-
+@profile
 def fpca_weights_parallel(data_funcs: np.ndarray, PCs: np.ndarray) -> np.ndarray:
     """
     Compute the full set of weights (w_ij) for gappy data functions and principal components using SLSQP minimization in
@@ -97,7 +97,7 @@ def fpca_weights_parallel(data_funcs: np.ndarray, PCs: np.ndarray) -> np.ndarray
 
     return fpca_weights
 
-
+@profile
 def fpca_weights_series(data_funcs: np.ndarray, PCs: np.ndarray) -> np.ndarray:
     """
     Compute the full set of weights (w_ij) for gappy data functions and principal components using SLSQP minimization.

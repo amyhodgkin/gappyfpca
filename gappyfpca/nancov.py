@@ -2,6 +2,7 @@ from multiprocessing import Pool
 
 import numpy as np
 
+@profile
 def nancov(A: np.ndarray,iparallel=0) -> np.ndarray:
 
     """
