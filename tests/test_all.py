@@ -41,7 +41,7 @@ def test_nancov1(iparallel):
     # Test it works out the correct covariance for complete data
     A=np.random.rand(3,3)
 
-    nan_cov = nancov(A,iparallel=iparallel)
+    nan_cov = nancov(A)
 
     cov = np.cov(A,bias=True,rowvar=False)
 
@@ -54,7 +54,7 @@ def test_nancov1(iparallel):
 def test_nancov2():
     #test on fixed gappy data
     A = np.array([[1,np.nan,2],[np.nan, 2, 4],[0,1,np.nan]])
-    cov=nancov(A,iparallel=0)
+    cov=nancov(A)
     ans=np.array([[0.25,0.25,-0.5],[0.25, 0.25, 0.5],[-0.5,0.5,1]])
     assert np.isclose(cov, ans).all()
 
