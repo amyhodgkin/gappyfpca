@@ -6,6 +6,7 @@ def nancov(A: np.ndarray) -> np.ndarray:
 
     """
     Calculate a pseudocovariance matrix for a dataset, ignoring NaN values.
+
     Parameters
     ----------
     A : np.ndarray
